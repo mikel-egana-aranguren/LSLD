@@ -1,13 +1,7 @@
 
+# LIFE SCIENCES LINKED DATA (LSLD)
 
-    ==================================
-    |LIFE SCIENCES LINKED DATA (LSLD)|
-    ==================================
-
-  
-............
-INTRODUCTION
-^^^^^^^^^^^^
+## INTRODUCTION
 
 This is a standalone, light-weight, configuration-free bundle to publish Linked
 Data. It is meant as an educational tool that students can use to become
@@ -31,104 +25,100 @@ installed. No security nor performance requirements have been taken into account
 when building it. The user should have basic knowledge on Unix, HTTP, RDF, OWL,
 Linked Data and SPARQL. 
 
-................
-STANDARD RUNNING
-^^^^^^^^^^^^^^^^
+## STANDARD RUNNING
 
 This section shows how to run the pack out of the box, with the example dataset
-included in Jena-Fuseki, and the configuration for it (web.xml and
-books-config-file.ttl). See bellow to use a different dataset and configuration.
+included in Jena-Fuseki, and the configuration for it (`web.xml` and
+`books-config-file.ttl`). See bellow to use a different dataset and configuration.
 
-Move to /jena-fuseki-0.2.6-SNAPSHOT and make Jena-Fuseki executable:
+Move to `/jena-fuseki-0.2.6-SNAPSHOT` and make Jena-Fuseki executable:
 
-chmod +x fuseki-server s-*
+`chmod +x fuseki-server s-*`
 
 Run Jena-Fuseki:
 
-./fuseki-server --update --mem /ds
+`./fuseki-server --update --mem /ds`
 
 In another terminal, load data:
 
-./s-put http://localhost:3030/ds/data default Data/books.ttl
+`./s-put http://localhost:3030/ds/data default Data/books.ttl`
 
 Test that data has been loaded:
 
-./s-query --service http://localhost:3030/ds/query 'SELECT * {?s ?p ?o}'
+`./s-query --service http://localhost:3030/ds/query 'SELECT * {?s ?p ?o}'`
 
-To test on the web, go to http://localhost:3030/sparql.html and execute 'SELECT
-* {?s ?p ?o}'
-(target graph http://localhost:3030/books.ttl)
+To test on the web, go to (http://localhost:3030/sparql.html) and execute `SELECT * {?s ?p ?o}`
+(target graph `http://localhost:3030/books.ttl`)
 
-Move to /jetty-distribution-9.0.0.M3 and run jetty:
+Move to `/jetty-distribution-9.0.0.M3` and run jetty:
 
-java -jar start.jar jetty.port=8080
+`java -jar start.jar jetty.port=8080`
 
-Test the whole setup by opening http://localhost:8080/book1 in a browser: there
+Test the whole setup by opening [http://localhost:8080/book1](http://localhost:8080/book1) in a browser: there
 should be a webpage with clickable links.
 
-.........................
-USING A DIFFERENT DATASET
-^^^^^^^^^^^^^^^^^^^^^^^^^
+## USING A DIFFERENT DATASET
 
 A Life Sciences toy dataset, including links to other datasets of the Linked
 Open Data cloud, is available at
-jena-fuseki-0.2.6-SNAPSHOT/Data/LSLD_example.owl.
+`jena-fuseki-0.2.6-SNAPSHOT/Data/LSLD_example.owl`.
 
 This time we will run fuseki differently (inspired by [1]): 
 
-mkdir lslddb
+`mkdir lslddb`
 
-./fuseki-server --update --loc=./lslddb /dataset
+`./fuseki-server --update --loc=./lslddb /dataset`
 
 In another terminal, upload the dataset:
 
-./s-put http://localhost:3030/dataset/data lsld Data/LSLD_example.owl
+`./s-put http://localhost:3030/dataset/data lsld Data/LSLD_example.owl`
 
 A pubby configuration file is already set at
-jetty-distribution-9.0.0.M3/webapps/ROOT/WEB-INF/lsld-toy-config-file.ttl, edit
-web.xml in the same directory to load the pubby configuration file by commenting
+`jetty-distribution-9.0.0.M3/webapps/ROOT/WEB-INF/lsld-toy-config-file.ttl`, edit
+`web.xml` in the same directory to load the pubby configuration file by commenting
 out the prior configuration files:
 
+```
   <context-param>
     <param-name>config-file</param-name>
     <param-value>lsld-toy-config-file.ttl</param-value>
 <!--<param-value>books-config-file.ttl</param-value> -->
 <!--<param-value>config.ttl</param-value> -->
   </context-param>
+```
   
 In another terminal, run jetty:
 
-java -jar start.jar jetty.port=8080
+`java -jar start.jar jetty.port=8080`
 
-Test the whole setup by opening http://localhost:8080/Protein_A in a browser:
+Test the whole setup by opening [http://localhost:8080/Protein_A](http://localhost:8080/Protein_A) in a browser:
 there should be a webpage with clickable links.
 
-.....
-ABOUT
-^^^^^
+## ABOUT
 
 This work is funded the Marie Curie program of the EU and is a project of the
 Biological Informatics Group of the Centre for Biotechnology and Plant Genomics
 of the UPM, Spain (http://wilkinsonlab.info). Any questions should be directed
 to mikel.egana.aranguren@gmail.com. 
 
-................
-MORE INFORMATION
-^^^^^^^^^^^^^^^^
+## MORE INFORMATION
 
 Linked Data: http://www.w3.org/standards/semanticweb/data
+
 Linked Open Data cloud: http://lod-cloud.net/
+
 RDF: http://www.w3.org/standards/techs/rdf
+
 OWL: http://www.w3.org/standards/techs/owl
+
 SPARQL: http://www.w3.org/standards/techs/sparql
+
 Jena-Fuseki: http://jena.apache.org/documentation/serving_data/index.html
+
 Jetty: http://jetty.codehaus.org/jetty/
+
 Pubby: http://wifo5-03.informatik.uni-mannheim.de/pubby/
 
-.........
-FOOTNOTES
-^^^^^^^^^
+---
 
-[1]
-http://answers.semanticweb.com/questions/9660/fuseki-gives-405-error-during-s-
-put
+[1] http://answers.semanticweb.com/questions/9660/fuseki-gives-405-error-during-s-put
