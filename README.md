@@ -67,7 +67,7 @@ Test the whole setup by opening [http://localhost:8080/book1](http://localhost:8
 
 A Life Sciences toy dataset, including links to other datasets of the [Linked Open Data cloud](http://lod-cloud.net/), is available at `jena-fuseki-0.2.6-SNAPSHOT/Data/LSLD_example.owl`.
 
-This time we will run fuseki [differently](http://answers.semanticweb.com/questions/9660/fuseki-gives-405-error-during-s-put). Move to `/jena-fuseki-0.2.6-SNAPSHOT`: 
+This time we will run fuseki [differently](http://answers.semanticweb.com/questions/9660/fuseki-gives-405-error-during-s-put). Move to `/jena-fuseki-0.2.6-SNAPSHOT`, making sure that, if you have been running the pack with the default dataset, both fuseki and jetty have been killed: 
 
 `mkdir lslddb`
 
